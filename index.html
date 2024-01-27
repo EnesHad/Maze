@@ -14,15 +14,15 @@
                         <canvas id="canvas" width="484px" height="484px">
                             <script>
                             drawMaze();
-                            drawPath();
                             </script>
                         </canvas>
                     </div>
                 </div>
                 <div class="console">
                     <div class="buttons">
-                        <button class="solve">SOLVE</button>
+                        <button class="solve" onclick="drawPath();">SOLVE</button>
                         <button class="play">PLAY</button>
+                        <button class="reset" onclick="window.location.reload();">RESET</button>
                         <button class="rules">RULES</button>
                     </div>
                     
