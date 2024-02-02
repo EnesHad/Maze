@@ -2,7 +2,6 @@
     <head>
         <title></title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
 
     </head>
     <body>
@@ -12,7 +11,7 @@
                 <div class="maze">
                     <div class="ho">
                         <canvas id="canvas" width="484px" height="484px">
-                            <script>
+                            <script src="script.js">
                                 
                             </script>
                         </canvas>
@@ -20,7 +19,7 @@
                 </div>
                 <div class="console">
                     <div class="buttons">
-                        <button class="solve" onclick="drawPath();">SOLVE</button>
+                        <button class="solve" onclick="drawSolution();">SOLVE</button>
                         <button class="play">PLAY</button>
                         <button class="reset" onclick="window.location.reload();">RESET</button>
                         <button class="rules">RULES</button>
