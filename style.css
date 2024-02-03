@@ -8,6 +8,7 @@ html, body{
     width: 100%;
     height: 100%;
 }
+
 /*LOGO*/
 .logo{
     height: 150px;
@@ -22,26 +23,41 @@ html, body{
     height: 750px;
     background-color: blue;
 }
+.ho{
+    position: relative;
+    margin:auto auto 0 auto;
+    width: fit-content;
+}
 /*MAZE*/
 .maze{
-    height: 75%;
+    height: fit-content;
     width: 100%;
-    background-color: blueviolet;
+    background-color: pink;
     display: block;
     margin:0 auto 0 auto;
+
+    
 }
 #canvas{
     display: block;
-    margin:auto auto 0 auto;
-    padding-top: 30px;
 }
+#canvas2 {
+    position: absolute;
+    top: 0;
+}
+
 .svg{
     padding-left: 135px;
     padding-top: 37px;
 }
+#ch {
+    width: 25px;
+    height: 25px;
+    display: none;
+}
 /*CONSEL-BUTTONS*/
 .console{
-    height: 25%;
+    height: 15%;
     width: 100%;
     background: red;
     margin: auto;
@@ -49,11 +65,11 @@ html, body{
 .buttons{
     display: flex;
     justify-content: space-around;
-    padding-top: 70px;
 }
 .play, .solve, .rules, .reset{
     width: 150px;
     height: 50px;
+    margin-top: 25px;
 }
 .play{}
 .solve{}

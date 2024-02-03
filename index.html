@@ -6,21 +6,24 @@
     </head>
     <body>
         <div class="bo">
+            
             <div class="logo"></div>
             <div class="holder">
                 <div class="maze">
                     <div class="ho">
+                        
                         <canvas id="canvas" width="484px" height="484px">
-                            <script src="script.js">
-                                
-                            </script>
+                            
+                        </canvas>
+                        <canvas id="canvas2" width="484px" height="484px">
+                            
                         </canvas>
                     </div>
                 </div>
                 <div class="console">
                     <div class="buttons">
-                        <button class="solve" onclick="drawSolution();">SOLVE</button>
-                        <button class="play">PLAY</button>
+                        <button type="button" class="solve" id="sol" onclick="drawSolution();" >SOLVE</button>
+                        <button class="play" id="play" onclick="moveCh();">PLAY</button>
                         <button class="reset" onclick="window.location.reload();">RESET</button>
                         <button class="rules">RULES</button>
                     </div>
@@ -29,6 +32,8 @@
             </div>
         </div>
     </body>
-    
+    <script src="script.js">
+
+                            </script>
 
 </html>

@@ -1,3 +1,4 @@
+//CORDS FOR MAZE
 var cord = [
   [2, 2, 226, 2], [242, 2, 482, 2], [66, 18, 82, 18], [146, 18, 162, 18], [194, 18, 210, 18], [242, 18, 258, 18], [274, 18, 306, 18], [322, 18, 354, 18], [370, 18, 402, 18], [418, 18, 466, 18],
   [2, 34, 66, 34], [114, 34, 130, 34], [162, 34, 210, 34], [226, 34, 242, 34], [258, 34, 290, 34], [306, 34, 338, 34], [354, 34, 386, 34], [418, 34, 482, 34], [34, 50, 50, 50], [82, 50, 114, 50],
@@ -49,6 +50,7 @@ var cord = [
   [466, 338, 466, 386], [466, 418, 466, 450], [482, 2, 482, 482]
 ];
 
+//CORDS FOR SOLUTION
 var path = [
   [234, 2], [234, 26], [250, 26], [250, 42], [234, 42], [234, 58], [250, 58], [250, 74], [298, 74], [298, 26], [266, 26], [266, 10], [314, 10], [314, 26], [346, 26], [346, 58], [378, 58],
   [378, 74], [362, 74], [362, 90], [378, 90], [378, 106], [362, 106], [362, 122], [346, 122], [346, 138], [362, 138], [362, 154], [314, 154], [314, 186], [330, 186], [330, 202], [282, 202],
@@ -59,29 +61,40 @@ var path = [
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const character = document.getElementById("canvas2");
+const ctx2 = character.getContext("2d");
 
+
+//DRAWUNG MAZE
 function drawMaze() {
-  console.log("maze " + cord.length);
+  scale = 1.32;
+  canvas.width=484*scale;
+  canvas.height=484*scale;
+  ctx.scale(scale,scale);
+
   ctx.beginPath();
   for (i = 0; i < cord.length; i++) {
-    console.log("maze2");
     ctx.moveTo(cord[i][0], cord[i][1]);
     ctx.lineTo(cord[i][2], cord[i][3]);
-
   }
   ctx.lineWidth = 2;
   ctx.stroke();
   ctx.closePath();
-  console.log("maze3 " + cord.length);
 }
 drawMaze();
 
 
-
+//DRAWING-REMOVING SOLUTION
 function drawSolution() {
-  const drawLinesWithDelay = (ctx, path, delay) => {
+  document.getElementById("play").setAttribute("disabled",true);
+  document.getElementById("sol").setAttribute("disabled",true);
+  character.style.display= "none";
+  
+  const drawLinesWithDelay = (ctx, path, delay, style) => {
+
     ctx.beginPath();
     ctx.strokeStyle = "white";
+    
     ctx.lineWidth = 4;
 
     const drawLineSegment = (i) => {
@@ -96,20 +109,124 @@ function drawSolution() {
       }
 
       ctx.stroke();
-
+      
       if (i < path.length - 1) {
         setTimeout(() => {
           drawLineSegment(i + 1);
         }, delay);
       } else {
         ctx.closePath();
+        document.getElementById("sol").removeAttribute("disabled");
+        document.getElementById("play").removeAttribute("disabled");
+
       }
     };
 
     drawLineSegment(0);
-
+    
   };
-  const delayBetweenLines = 150;
+  const delayBetweenLines = 30;
+  
   drawLinesWithDelay(ctx, path, delayBetweenLines);
+  
 }
+function removeSolution() {
+  document.getElementById("play").setAttribute("disabled",true);
+  ctx.clearRect(0,0, canvas.width, canvas.height);
+  drawMaze();
+}
+
+//DRAWING CH
+chW=12;
+chH=15;
+function drawCh(){
+  character.width=484*scale;
+  character.height=484*scale;
+  ctx2.scale(scale,scale);
+  
+  url = "img/ch.png";
+  img = document.createElement("img");
+  img.setAttribute('src', url);
+  img.onload = function() {
+    ctx2.drawImage(img, 228, 2, chW, chH);
+  };
+}
+document.addEventListener("DOMContentLoaded", (event) => {
+  drawCh();
+});
+
+//MOVING CH
+me=true;
+function moveCh(){
+  me=false;
+  removeSolution();
+  ctx2.clearRect(0,0, canvas.width, canvas.height);
+  character.style.display= "block";
+   y=2;
+   x=228;
+    m=16;
+    ctx2.drawImage(img, x, y, chW, chH);
+}
+document.addEventListener("keydown", (e) => {
+  
+  //var p = ctx.getImageData(200, g, 1, 1).data[0]; 
+  //console.log(p);
+  
+
+    if(me)return;
+    const key=e.key;
+    switch(key){
+        case "w":
+        case "W":
+        case "ArrowUp":
+          if(y>2){
+              ctx2.clearRect(0,0, canvas.width, canvas.height);
+              y=y-m;
+                ctx2.drawImage(img, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }
+            break;
+
+
+        case "s":
+        case "S":
+        case "ArrowDown":
+          if(y<466){
+          ctx2.clearRect(0,0, canvas.width, canvas.height);
+              y=y+m;
+                ctx2.drawImage(img, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }
+            break;
+
+
+        case "a":
+        case "A":
+        case "ArrowLeft":
+          if(x>4){
+          ctx2.clearRect(0,0, canvas.width, canvas.height);
+              x=x-m;
+                ctx2.drawImage(img, x, y, chW, 16);
+                //console.log(x+" "+y);
+              }
+            break;
+
+
+        case "d":
+        case "D":
+        case "ArrowRight":
+          if(x<468){
+          ctx2.clearRect(0,0, canvas.width, canvas.height);
+              x=x+m;
+                ctx2.drawImage(img, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }
+            break;
+
+    }
+
+  });
+
+
+
 
