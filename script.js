@@ -59,6 +59,14 @@ var path = [
   [202, 362], [250, 362], [250, 394], [266, 394], [266, 410], [250, 410], [250, 426], [234, 426], [234, 458], [266, 458], [266, 474], [250, 474], [250, 482]
 ];
 
+
+sound = new Audio('bgMusic.mp3');
+sound.volume=0.15;
+
+document.addEventListener("click", (event) => {
+  sound.play();
+});
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const character = document.getElementById("canvas2");
@@ -68,11 +76,13 @@ const ctx2 = character.getContext("2d");
 //DRAWUNG MAZE
 function drawMaze() {
   scale = 1.32;
+  
   canvas.width=484*scale;
   canvas.height=484*scale;
   ctx.scale(scale,scale);
 
   ctx.beginPath();
+  ctx.strokeStyle="#898989";
   for (i = 0; i < cord.length; i++) {
     ctx.moveTo(cord[i][0], cord[i][1]);
     ctx.lineTo(cord[i][2], cord[i][3]);
@@ -93,7 +103,7 @@ function drawSolution() {
   const drawLinesWithDelay = (ctx, path, delay, style) => {
 
     ctx.beginPath();
-    ctx.strokeStyle = "white";
+    ctx.strokeStyle = "rgb(55 99 143)";
     
     ctx.lineWidth = 4;
 
@@ -162,9 +172,9 @@ function moveCh(){
   removeSolution();
   ctx2.clearRect(0,0, canvas.width, canvas.height);
   character.style.display= "block";
-   y=2;
-   x=228;
-    m=16;
+  y=2;
+  x=228;
+  m=16;
     ctx2.drawImage(img, x, y, chW, chH);
 }
 document.addEventListener("keydown", (e) => {
@@ -175,16 +185,21 @@ document.addEventListener("keydown", (e) => {
 
     if(me)return;
     const key=e.key;
+    //IZPIS LOKACIJE CH
+    //console.log((x-4)/m*2+1+"  "+(y-2)/m*2+1);
     switch(key){
         case "w":
         case "W":
         case "ArrowUp":
+          
           if(y>2){
+            if(arr[(x-4)/m*2+1][(y-2)/m*2+1-1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               y=y-m;
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
+            }
             break;
 
 
@@ -192,11 +207,13 @@ document.addEventListener("keydown", (e) => {
         case "S":
         case "ArrowDown":
           if(y<466){
-          ctx2.clearRect(0,0, canvas.width, canvas.height);
+            if(arr[(x-4)/m*2+1][(y-2)/m*2+1+1]==0){
+              ctx2.clearRect(0,0, canvas.width, canvas.height);
               y=y+m;
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
+            }
             break;
 
 
@@ -204,11 +221,13 @@ document.addEventListener("keydown", (e) => {
         case "A":
         case "ArrowLeft":
           if(x>4){
-          ctx2.clearRect(0,0, canvas.width, canvas.height);
+            if(arr[(x-4)/m*2+1-1][(y-2)/m*2+1]==0){
+              ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x-m;
                 ctx2.drawImage(img, x, y, chW, 16);
                 //console.log(x+" "+y);
               }
+            }
             break;
 
 
@@ -216,16 +235,51 @@ document.addEventListener("keydown", (e) => {
         case "D":
         case "ArrowRight":
           if(x<468){
-          ctx2.clearRect(0,0, canvas.width, canvas.height);
+            if(arr[(x-4)/m*2+1+1][(y-2)/m*2+1]==0){
+              ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x+m;
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
+            }
             break;
 
     }
 
   });
+
+
+  get_px = (ctx, x, y)=>{
+    return ctx.getImageData(x,y, 1, 1).data;
+};
+
+
+//CODE FOR 1 AND 0 MAZE
+    var w=30;
+    var h=30;
+    arr = new Array(w*2+1);
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = new Array(h*2+1);
+        arr[i].fill(0);
+    }
+var xStart=2*scale;
+var yStart=2*scale;
+var xSize=16*scale;
+
+for(var i=0;i<w*2+1;i++){
+        for(var j=0;j<h*2+1;j++){
+            var wi=xStart+xSize/2*i;
+            var hj=yStart+xSize/2*j;
+            var cl=get_px(ctx,wi,hj);
+            if(cl[3]!=0){
+                arr[i][j]=1;
+                //console.log(i+"  "+j);
+                //console.log(cl);
+            }
+        }
+    }
+//ARRAY OF MAZE MADE OUT OF 1 AND 0, 90deg to left cuz of js
+//console.log(arr);
 
 
 
