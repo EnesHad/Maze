@@ -281,6 +281,12 @@ for(var i=0;i<w*2+1;i++){
 //ARRAY OF MAZE MADE OUT OF 1 AND 0, 90deg to left cuz of js
 //console.log(arr);
 
-
-
-
+//SWEET ALERT
+function sweet(){
+  Swal.fire({
+    title: 'Conditions Not Met',
+    text: 'Please select at least one checkbox before submitting.',
+    confirmButtonText: 'RAZUMEM',
+    customClass: 'sweet'
+  });
+}

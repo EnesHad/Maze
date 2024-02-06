@@ -23,7 +23,7 @@ body{
 }
 .logo a{
     color:  #880808;
-    font: 48px 'Wide Latin';
+    font: 48px 'med';
     
 }
 /*HOLDER FOR MAZE*/
@@ -113,4 +113,13 @@ button:disabled{
     font-family: med;
     src: url(Enchant-Font/Enchant.ttf);
 }
-  
+
+
+.sweet{
+    width: 550px;
+    height: 750px;
+    background: url('img/irina-savchishina-scroll.png') no-repeat center;
+    background-size: cover;
+    
+    
+}
