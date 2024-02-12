@@ -96,6 +96,7 @@ drawMaze();
 
 //DRAWING-REMOVING SOLUTION
 function drawSolution() {
+  removeSolution();
   document.getElementById("play").setAttribute("disabled",true);
   document.getElementById("sol").setAttribute("disabled",true);
   character.style.display= "none";
@@ -186,6 +187,8 @@ document.addEventListener("keydown", (e) => {
     if(me)return;
     const key=e.key;
     //IZPIS LOKACIJE CH
+    j=(x-4)/m*2+1;
+    k=(y-2)/m*2+1;
     //console.log((x-4)/m*2+1+"  "+(y-2)/m*2+1);
     switch(key){
         case "w":
@@ -205,7 +208,7 @@ document.addEventListener("keydown", (e) => {
 
         case "s":
         case "S":
-        case "ArrowDown":
+        case "ArrowDown":  
           if(y<466){
             if(arr[(x-4)/m*2+1][(y-2)/m*2+1+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
@@ -213,8 +216,9 @@ document.addEventListener("keydown", (e) => {
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
-            }
-            break;
+              
+          }
+          break;
 
 
         case "a":
@@ -245,7 +249,7 @@ document.addEventListener("keydown", (e) => {
             break;
 
     }
-
+      
   });
 
 
@@ -281,12 +285,20 @@ for(var i=0;i<w*2+1;i++){
 //ARRAY OF MAZE MADE OUT OF 1 AND 0, 90deg to left cuz of js
 //console.log(arr);
 
+
 //SWEET ALERT
 function sweet(){
   Swal.fire({
-    title: 'Conditions Not Met',
-    text: 'Please select at least one checkbox before submitting.',
-    confirmButtonText: 'RAZUMEM',
-    customClass: 'sweet'
+    title: 'RULES',
+    html: "Press play and solve the maze. <br> Use W,A,S,D keys to move the character to the end. <br> If you need help, press the solve button, <br> but be warned, your progress will be reset!",
+    confirmButtonText: 'OK',
+    customClass: {
+      popup: 'sweet', 
+      title: 'tit',
+      confirmButton: 'butt'
+    
+    }
   });
+  
+  
 }

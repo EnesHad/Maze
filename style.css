@@ -15,11 +15,11 @@ body{
 
 /*LOGO*/
 .logo{
-    height: 150px;
+    height: 100px;
     width: 750px;
     margin: auto;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 25px;
 }
 .logo a{
     color:  #880808;
@@ -78,11 +78,6 @@ body{
     height: 50px;
     margin-top: 25px;
 }
-.play{}
-.solve{}
-.rules{}
-.reset{}
-
 
 button {
     font-family: med;
@@ -116,10 +111,23 @@ button:disabled{
 
 
 .sweet{
+    font-family: med;
+    font-size: 18px;
     width: 550px;
-    height: 750px;
-    background: url('img/irina-savchishina-scroll.png') no-repeat center;
+    height: 660px;
+    background: url('img/scroll.png') no-repeat center;
     background-size: cover;
-    
-    
+    color:rgb(27, 6, 6);
+}
+.tit{
+    margin-top: 15px;
+}
+.butt{
+    margin-top: 130px;
+    margin-left: 22px;
+    padding-left: 15px;
+    background-color: transparent !important;
+    border-radius: 70px !important;
+    width: 50px; /* Adjust the width and height as needed */
+    height: 50px; /* Adjust the width and height as needed */
 }
