@@ -65,6 +65,7 @@ sound.volume=0.15;
 
 document.addEventListener("click", (event) => {
   sound.play();
+  //endMenu();
 });
 
 const canvas = document.getElementById("canvas");
@@ -169,13 +170,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 //MOVING CH
 me=true;
 function moveCh(){
-  me=false;
-  removeSolution();
-  ctx2.clearRect(0,0, canvas.width, canvas.height);
-  character.style.display= "block";
-  y=2;
-  x=228;
-  m=16;
+    me=false;
+    removeSolution();
+    ctx2.clearRect(0,0, canvas.width, canvas.height);
+    character.style.display= "block";
+    y=2;
+    x=228;
+    m=16;
     ctx2.drawImage(img, x, y, chW, chH);
 }
 document.addEventListener("keydown", (e) => {
@@ -184,7 +185,7 @@ document.addEventListener("keydown", (e) => {
   //console.log(p);
   
 
-    if(me)return;
+    if(me) return;
     const key=e.key;
     //IZPIS LOKACIJE CH
     j=(x-4)/m*2+1;
@@ -194,7 +195,6 @@ document.addEventListener("keydown", (e) => {
         case "w":
         case "W":
         case "ArrowUp":
-          
           if(y>2){
             if(arr[(x-4)/m*2+1][(y-2)/m*2+1-1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
@@ -202,50 +202,55 @@ document.addEventListener("keydown", (e) => {
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
-            }
+          }
             break;
 
 
         case "s":
         case "S":
         case "ArrowDown":  
-          if(y<466){
             if(arr[(x-4)/m*2+1][(y-2)/m*2+1+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               y=y+m;
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
-              
-          }
+            if(x==244 && y==482){
+              endMenu();
+              ctx2.clearRect(0,0, canvas.width, canvas.height);
+              drawCh();
+              y=2;
+              x=228;
+              me=true;
+              document.getElementById("play").removeAttribute("disabled");
+            }
+            
           break;
 
 
         case "a":
         case "A":
         case "ArrowLeft":
-          if(x>4){
             if(arr[(x-4)/m*2+1-1][(y-2)/m*2+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x-m;
                 ctx2.drawImage(img, x, y, chW, 16);
                 //console.log(x+" "+y);
               }
-            }
+            
             break;
 
 
         case "d":
         case "D":
         case "ArrowRight":
-          if(x<468){
             if(arr[(x-4)/m*2+1+1][(y-2)/m*2+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x+m;
                 ctx2.drawImage(img, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
-            }
+            
             break;
 
     }
@@ -296,9 +301,17 @@ function sweet(){
       popup: 'sweet', 
       title: 'tit',
       confirmButton: 'butt'
-    
     }
   });
-  
-  
+}
+function endMenu(){
+  Swal.fire({
+    title: 'SUCCES',
+    html: "You have escaped the maze! <br> GOOD JOB",
+    confirmButtonText: 'OK',
+    customClass: {
+      popup: 'sweet end', 
+      confirmButton: 'butt2'
+    }
+  });
 }

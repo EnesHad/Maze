@@ -112,7 +112,7 @@ button:disabled{
 
 .sweet{
     font-family: med;
-    font-size: 18px;
+    font-size: 19px;
     width: 550px;
     height: 660px;
     background: url('img/scroll.png') no-repeat center;
@@ -123,9 +123,26 @@ button:disabled{
     margin-top: 15px;
 }
 .butt{
-    margin-top: 130px;
+    position: absolute;
+    bottom: 65px;
     margin-left: 22px;
-    padding-left: 15px;
+    padding-left: 16px;
+    background-color: transparent !important;
+    border-radius: 70px !important;
+    width: 50px; /* Adjust the width and height as needed */
+    height: 50px; /* Adjust the width and height as needed */
+}
+
+
+.end{
+    font-size: 25px;
+    top: 30px;
+}
+.butt2{
+    position: absolute;
+    bottom: 62px;
+    margin-left: 26px;
+    padding-left: 13px;
     background-color: transparent !important;
     border-radius: 70px !important;
     width: 50px; /* Adjust the width and height as needed */
