@@ -156,11 +156,11 @@ function drawCh(){
   character.height=484*scale;
   ctx2.scale(scale,scale);
   
-  url = "img/ch.png";
+  url = "img/ch2.png";
   img = document.createElement("img");
   img.setAttribute('src', url);
   img.onload = function() {
-    ctx2.drawImage(img, 228, 2, chW, chH);
+    ctx2.drawImage(img, 8, 45, 170, 220, 228, 2, chW, chH);
   };
 }
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -177,7 +177,7 @@ function moveCh(){
     y=2;
     x=228;
     m=16;
-    ctx2.drawImage(img, x, y, chW, chH);
+    ctx2.drawImage(img, 8, 45, 170, 220, x, y, chW, chH);
 }
 document.addEventListener("keydown", (e) => {
   
@@ -199,7 +199,8 @@ document.addEventListener("keydown", (e) => {
             if(arr[(x-4)/m*2+1][(y-2)/m*2+1-1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               y=y-m;
-                ctx2.drawImage(img, x, y, chW, chH);
+                //img, tocka, velikost slike ki jo uzimasod tocke , pozicija na canvasu, velikost slike(ch)
+                ctx2.drawImage(img, 196, 45, 170, 220, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
           }
@@ -212,7 +213,7 @@ document.addEventListener("keydown", (e) => {
             if(arr[(x-4)/m*2+1][(y-2)/m*2+1+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               y=y+m;
-                ctx2.drawImage(img, x, y, chW, chH);
+                ctx2.drawImage(img, 8, 45, 170, 220, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
             if(x==244 && y==482){
@@ -234,7 +235,7 @@ document.addEventListener("keydown", (e) => {
             if(arr[(x-4)/m*2+1-1][(y-2)/m*2+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x-m;
-                ctx2.drawImage(img, x, y, chW, 16);
+                ctx2.drawImage(img, 390, 45, 145, 187, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
             
@@ -247,7 +248,7 @@ document.addEventListener("keydown", (e) => {
             if(arr[(x-4)/m*2+1+1][(y-2)/m*2+1]==0){
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x+m;
-                ctx2.drawImage(img, x, y, chW, chH);
+                ctx2.drawImage(img, 560, 45, 145, 187, x, y, chW, chH);
                 //console.log(x+" "+y);
               }
             
