@@ -52,6 +52,11 @@ body{
     position: absolute;
     top: 0;
 }
+#canvas3{
+    z-index: 3;
+    position: absolute;
+    top: 0;
+}
 
 .svg{
     padding-left: 135px;

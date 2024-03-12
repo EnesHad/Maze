@@ -72,6 +72,9 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const character = document.getElementById("canvas2");
 const ctx2 = character.getContext("2d");
+const knight = document.getElementById("canvas3");
+const ctx3 = knight.getContext("2d");
+
 
 
 //DRAWUNG MAZE
@@ -162,9 +165,24 @@ function drawCh(){
   img.onload = function() {
     ctx2.drawImage(img, 8, 45, 170, 220, 228, 2, chW, chH);
   };
+
+}
+//DRAW KNIGHT
+function drawKn(){
+  knight.width=484*scale;
+  knight.height=484*scale;
+  ctx3.scale(scale,scale);
+
+  url = "img/knight.png";
+  img2 = document.createElement("img");
+  img2.setAttribute('src', url);
+  img2.onload = function() {
+    ctx3.drawImage(img2, 8, 45, 170, 220, 260, 2, chW, chH);
+  };
 }
 document.addEventListener("DOMContentLoaded", (event) => {
   drawCh();
+  drawKn();
 });
 
 //MOVING CH
@@ -236,7 +254,7 @@ document.addEventListener("keydown", (e) => {
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x-m;
                 ctx2.drawImage(img, 390, 45, 145, 187, x, y, chW, chH);
-                //console.log(x+" "+y);
+                console.log(x+" "+y);
               }
             
             break;
@@ -249,7 +267,7 @@ document.addEventListener("keydown", (e) => {
               ctx2.clearRect(0,0, canvas.width, canvas.height);
               x=x+m;
                 ctx2.drawImage(img, 560, 45, 145, 187, x, y, chW, chH);
-                //console.log(x+" "+y);
+                console.log(x+" "+y);
               }
             
             break;
@@ -262,6 +280,23 @@ document.addEventListener("keydown", (e) => {
   get_px = (ctx, x, y)=>{
     return ctx.getImageData(x,y, 1, 1).data;
 };
+endgame=false;
+hit=false;
+km=1;
+//KNIGHT MOVMENT
+function moveKn(){
+  if(endgame==flase){
+    
+  }else{
+    ctx3.clearRect(0,0, knight.width, knight.height);
+  }
+
+
+}
+
+
+
+//END GAME
 
 
 //CODE FOR 1 AND 0 MAZE

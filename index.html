@@ -2,7 +2,7 @@
     <head>
         <title></title>
         <link rel="stylesheet" href="style.css">
-
+        <link rel="icon" type="image/x-icon" href="img/fav.ico">
     </head>
     <body>
         <div class="bo">
@@ -17,14 +17,16 @@
                         <canvas id="canvas" width="484px" height="484px">
                         </canvas>
                         <canvas id="canvas2" width="484px" height="484px">
-                            
                         </canvas>
+                        <canvas id="canvas3" width="484px" height="484px">
+                        </canvas>
+
                     </div>
                 </div>
                 <div class="console">
                     <div class="buttons text">
                         <button type="button" class="solve gate-button" id="sol" onclick="drawSolution();" >SOLVE</button>
-                        <button class="play" id="play" onclick="moveCh();">PLAY</button>
+                        <button class="play" id="play" onclick="moveCh(); moveKn();">PLAY</button>
                         <button class="reset" onclick="window.location.reload();">RESET</button>
                         <button class="rules" onclick="sweet();">RULES</button>
                     </div>
