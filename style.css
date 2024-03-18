@@ -117,7 +117,7 @@ button:disabled{
 
 .sweet{
     font-family: med;
-    font-size: 19px;
+    font-size: 22px;
     width: 550px;
     height: 660px;
     background: url('img/scroll.png') no-repeat center;
@@ -129,7 +129,7 @@ button:disabled{
 }
 .butt{
     position: absolute;
-    bottom: 65px;
+    bottom: 62px;
     margin-left: 22px;
     padding-left: 16px;
     background-color: transparent !important;
@@ -152,4 +152,7 @@ button:disabled{
     border-radius: 70px !important;
     width: 50px; /* Adjust the width and height as needed */
     height: 50px; /* Adjust the width and height as needed */
+}
+div:where(.swal2-container) h2:where(.swal2-title) {
+    padding-top:0.6em !important;
 }

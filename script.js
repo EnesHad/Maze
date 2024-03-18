@@ -100,10 +100,12 @@ drawMaze();
 
 //DRAWING-REMOVING SOLUTION
 function drawSolution() {
+  gameend=true;
   removeSolution();
   document.getElementById("play").setAttribute("disabled",true);
   document.getElementById("sol").setAttribute("disabled",true);
   character.style.display= "none";
+  knight.style.display="none";
   
   const drawLinesWithDelay = (ctx, path, delay, style) => {
 
@@ -154,6 +156,7 @@ function removeSolution() {
 //DRAWING CH
 chW=12;
 chH=15;
+
 function drawCh(){
   character.width=484*scale;
   character.height=484*scale;
@@ -177,7 +180,18 @@ function drawKn(){
   img2 = document.createElement("img");
   img2.setAttribute('src', url);
   img2.onload = function() {
-    ctx3.drawImage(img2, 8, 45, 170, 220, 260, 2, chW, chH);
+    ctx3.drawImage(img2, KN[0].spr.list[KN[0].spr.ind].x, KN[0].spr.list[KN[0].spr.ind].y, 80, 87, KN[0].pos.x, KN[0].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[1].spr.list[KN[1].spr.ind].x, KN[1].spr.list[KN[1].spr.ind].y, 80, 87, KN[1].pos.x, KN[1].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[2].spr.list[KN[2].spr.ind].x, KN[2].spr.list[KN[2].spr.ind].y, 80, 87, KN[2].pos.x, KN[2].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[3].spr.list[KN[3].spr.ind].x, KN[3].spr.list[KN[3].spr.ind].y, 80, 87, KN[3].pos.x, KN[3].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[4].spr.list[KN[4].spr.ind].x, KN[4].spr.list[KN[4].spr.ind].y, 80, 87, KN[4].pos.x, KN[4].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[5].spr.list[KN[5].spr.ind].x, KN[5].spr.list[KN[5].spr.ind].y, 80, 87, KN[5].pos.x, KN[5].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[6].spr.list[KN[6].spr.ind].x, KN[6].spr.list[KN[6].spr.ind].y, 80, 87, KN[6].pos.x, KN[6].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[7].spr.list[KN[7].spr.ind].x, KN[7].spr.list[KN[7].spr.ind].y, 80, 87, KN[7].pos.x, KN[7].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[8].spr.list[KN[8].spr.ind].x, KN[8].spr.list[KN[8].spr.ind].y, 80, 87, KN[8].pos.x, KN[8].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[9].spr.list[KN[9].spr.ind].x, KN[9].spr.list[KN[9].spr.ind].y, 80, 87, KN[9].pos.x, KN[9].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[10].spr.list[KN[10].spr.ind].x, KN[10].spr.list[KN[10].spr.ind].y, 80, 87, KN[10].pos.x, KN[10].pos.y, knW, chH);
+    ctx3.drawImage(img2, KN[11].spr.list[KN[11].spr.ind].x, KN[11].spr.list[KN[11].spr.ind].y, 80, 87, KN[11].pos.x, KN[11].pos.y, knW, chH);
   };
 }
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -202,7 +216,6 @@ document.addEventListener("keydown", (e) => {
   //var p = ctx.getImageData(200, g, 1, 1).data[0]; 
   //console.log(p);
   
-
     if(me) return;
     const key=e.key;
     //IZPIS LOKACIJE CH
@@ -273,26 +286,166 @@ document.addEventListener("keydown", (e) => {
             break;
 
     }
-      
+
+    for(var i=0;i<KN.length;i++){
+      if(x==KN[i].pos.x && y==KN[i].pos.y){
+        endGame();
+      }
+    }
+
   });
 
 
   get_px = (ctx, x, y)=>{
     return ctx.getImageData(x,y, 1, 1).data;
 };
-endgame=false;
+
+
+
+
+gameend=false;
 hit=false;
-km=1;
-//KNIGHT MOVMENT
-function moveKn(){
-  if(endgame==flase){
-    
-  }else{
-    ctx3.clearRect(0,0, knight.width, knight.height);
+
+km=16;
+knW=16;
+
+
+
+//KNIGHT SPRITE
+sprD={x:265, y:220, w:80, h:87};
+sprA={x:335, y:220, w:80, h:87};
+sprW={x:265, y:220, w:80, h:87};
+sprS={x:335, y:220, w:80, h:87};
+
+sprA2={x:265, y:135, w:80, h:87};
+sprD2={x:338, y:133, w:80, h:87};
+sprS2={x:265, y:135, w:80, h:87};
+sprW2={x:338, y:133, w:80, h:87};
+
+
+//Knights
+KN = [
+  {pos:{x:260,y:2,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]}, dir:"d"},
+  {pos:{x:308,y:66,end:false}, spr:{ind:0,list:[sprD2,sprA2,sprS2,sprW2]}, dir:"d"},
+  {pos:{x:244,y:354,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]}, dir:"d"},
+  {pos:{x:356,y:290,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]}, dir:"s"},
+  {pos:{x:452,y:322,end:false}, spr:{ind:0,list:[sprD2,sprA2,sprS2,sprW2]}, dir:"s"},
+  {pos:{x:180,y:466,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]}, dir:"d"},
+  {pos:{x:68,y:306,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]},dir:"s"},
+  {pos:{x:100,y:242,end:false}, spr:{ind:0,list:[sprD2,sprA2,sprS2,sprW2]}, dir:"s"},
+  {pos:{x:132,y:50,end:false}, spr:{ind:0,list:[sprD2,sprA2,sprS2,sprW2]}, dir:"s"},
+  {pos:{x:276,y:242,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]}, dir:"s"},
+  {pos:{x:196,y:194,end:false}, spr:{ind:0,list:[sprD,sprA,sprS,sprW]}, dir:"d"},
+  {pos:{x:372,y:178,end:false}, spr:{ind:0,list:[sprD2,sprA2,sprS2,sprW2]}, dir:"s"},
+];
+
+
+timeout=0;
+
+function moveKn(start){
+  
+  if(gameend && !start) return;
+  ctx3.canvas.style.display="block";
+  gameend=false;
+  for(var i=0;i<KN.length;i++){
+
+//knight moving
+moveTh(ctx3,arr,16,img2,knW,chH,KN[i].spr.list[KN[i].spr.ind], KN[i].dir ,KN[i].pos,i==0);
+    if(KN[i].pos.end){
+      KN[i].pos.end=false;
+      if(KN[i].dir=="w"){
+        KN[i].spr.ind=2;
+        KN[i].dir="s";
+      }else if(KN[i].dir=="s"){
+        KN[i].spr.ind=3;
+        KN[i].dir="w";
+      }else if(KN[i].dir=="a"){
+        KN[i].spr.ind=0;
+        KN[i].dir="d";
+      }else{
+        KN[i].spr.ind=1;
+        KN[i].dir="a";
+      }
+      moveTh(ctx3,arr,16,img2,knW,chH,KN[i].spr.list[KN[i].spr.ind], KN[i].dir ,KN[i].pos, i==0);
+    }
+    //console.log(KN[i].pos.x+" "+KN[i].pos.y+" "+KN[i].pos.end);
+    if(x==KN[i].pos.x && y==KN[i].pos.y){
+      endGame();
+    }
   }
 
-
+  timeout=setTimeout(() => {
+    moveKn(false);
+  }, 500);
 }
+
+
+
+
+function moveTh(ctx2,arr,m,img,chW,chH,spr, key, pos, clear){
+    
+  //var p = ctx.getImageData(200, g, 1, 1).data[0]; 
+  //console.log(p);
+    var x= pos.x;
+    var y= pos.y;
+    //IZPIS LOKACIJE CH
+    
+    //console.log((x-4)/m*2+1+"  "+(y-2)/m*2+1);
+    switch(key){
+        case "w":
+        case "W":
+        case "ArrowUp":
+            if(arr[(x-4)/m*2+1][(y-2)/m*2+1-1]==0){
+              if(clear) ctx2.clearRect(0,0, ctx2.canvas.width, ctx2.canvas.height);
+              y=y-m;
+                //img, tocka, velikost slike ki jo uzimasod tocke , pozicija na ctx2.canvasu, velikost slike(ch)
+                ctx2.drawImage(img, spr.x, spr.y, spr.w, spr.h, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }else{pos.end=true;}
+            break;
+
+
+        case "s":
+        case "S":
+        case "ArrowDown":  
+            if(arr[(x-4)/m*2+1][(y-2)/m*2+1+1]==0){
+              if(clear) ctx2.clearRect(0,0, ctx2.canvas.width, ctx2.canvas.height);
+              y=y+m;
+                ctx2.drawImage(img, spr.x, spr.y, spr.w, spr.h, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }else{pos.end=true;}
+          break;
+
+
+        case "a":
+        case "A":
+        case "ArrowLeft":
+            if(arr[(x-4)/m*2+1-1][(y-2)/m*2+1]==0){
+              if(clear) ctx2.clearRect(0,0, ctx2.canvas.width, ctx2.canvas.height);
+              x=x-m;
+                ctx2.drawImage(img, spr.x, spr.y, spr.w, spr.h, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }else{pos.end=true;}
+            
+            break;
+
+
+        case "d":
+        case "D":
+        case "ArrowRight":
+            if(arr[(x-4)/m*2+1+1][(y-2)/m*2+1]==0){
+              if(clear) ctx2.clearRect(0,0, ctx2.canvas.width, ctx2.canvas.height);
+              x=x+m;
+                ctx2.drawImage(img, spr.x, spr.y, spr.w, spr.h, x, y, chW, chH);
+                //console.log(x+" "+y);
+              }else{pos.end=true;}
+            
+            break;
+
+    }
+    pos.x=x;
+    pos.y=y;
+  }
 
 
 
@@ -328,10 +481,11 @@ for(var i=0;i<w*2+1;i++){
 
 
 //SWEET ALERT
+
 function sweet(){
   Swal.fire({
     title: 'RULES',
-    html: "Press play and solve the maze. <br> Use W,A,S,D keys to move the character to the end. <br> If you need help, press the solve button, <br> but be warned, your progress will be reset!",
+    html: "Press play and solve the maze. <br><br> Use W,A,S,D keys to move the character. <br> If you need help, press the solve button, <br> but be warned, your progress will be reset!",
     confirmButtonText: 'OK',
     customClass: {
       popup: 'sweet', 
@@ -340,6 +494,7 @@ function sweet(){
     }
   });
 }
+
 function endMenu(){
   Swal.fire({
     title: 'SUCCES',
@@ -350,4 +505,20 @@ function endMenu(){
       confirmButton: 'butt2'
     }
   });
+}
+
+function endGame(){
+  gameend=true;
+  window.clearTimeout(timeout);
+  Swal.fire({
+    title: 'Game over',
+    html: "YOU HAVE BEEN CAUGHT! <br> <br>",
+    confirmButtonText: 'OK',
+    customClass: {
+      popup: 'sweet end', 
+      confirmButton: 'butt2'
+    }
+    
+  }).then(function(){window.location.reload();});
+
 }
