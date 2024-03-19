@@ -104,7 +104,7 @@ function drawSolution() {
   removeSolution();
   document.getElementById("play").setAttribute("disabled",true);
   document.getElementById("sol").setAttribute("disabled",true);
-  character.style.display= "none";
+  //character.style.display= "none";
   knight.style.display="none";
   
   const drawLinesWithDelay = (ctx, path, delay, style) => {
@@ -121,8 +121,11 @@ function drawSolution() {
 
       if (i === 0) {
         ctx.moveTo(x, y);
+        
       } else {
+        ctx2.clearRect(0,0, canvas.width, canvas.height);
         ctx.lineTo(x, y);
+        ctx2.drawImage(img, 8, 45, 170, 220, x-5, y-7, chW, chH);
       }
 
       ctx.stroke();
@@ -142,7 +145,7 @@ function drawSolution() {
     drawLineSegment(0);
     
   };
-  const delayBetweenLines = 30;
+  const delayBetweenLines = 200;
   
   drawLinesWithDelay(ctx, path, delayBetweenLines);
   
@@ -170,6 +173,7 @@ function drawCh(){
   };
 
 }
+
 //DRAW KNIGHT
 function drawKn(){
   knight.width=484*scale;
@@ -211,8 +215,8 @@ function moveCh(){
     m=16;
     ctx2.drawImage(img, 8, 45, 170, 220, x, y, chW, chH);
 }
+
 document.addEventListener("keydown", (e) => {
-  
   //var p = ctx.getImageData(200, g, 1, 1).data[0]; 
   //console.log(p);
   
@@ -256,9 +260,7 @@ document.addEventListener("keydown", (e) => {
               me=true;
               document.getElementById("play").removeAttribute("disabled");
             }
-            
           break;
-
 
         case "a":
         case "A":
@@ -269,9 +271,7 @@ document.addEventListener("keydown", (e) => {
                 ctx2.drawImage(img, 390, 45, 145, 187, x, y, chW, chH);
                 console.log(x+" "+y);
               }
-            
             break;
-
 
         case "d":
         case "D":
@@ -282,9 +282,7 @@ document.addEventListener("keydown", (e) => {
                 ctx2.drawImage(img, 560, 45, 145, 187, x, y, chW, chH);
                 console.log(x+" "+y);
               }
-            
             break;
-
     }
 
     for(var i=0;i<KN.length;i++){
@@ -293,23 +291,17 @@ document.addEventListener("keydown", (e) => {
       }
     }
 
-  });
+});
 
 
-  get_px = (ctx, x, y)=>{
-    return ctx.getImageData(x,y, 1, 1).data;
+get_px = (ctx, x, y)=>{
+  return ctx.getImageData(x,y, 1, 1).data;
 };
 
-
-
-
 gameend=false;
-hit=false;
 
 km=16;
 knW=16;
-
-
 
 //KNIGHT SPRITE
 sprD={x:265, y:220, w:80, h:87};
@@ -445,7 +437,7 @@ function moveTh(ctx2,arr,m,img,chW,chH,spr, key, pos, clear){
     }
     pos.x=x;
     pos.y=y;
-  }
+}
 
 
 
@@ -518,7 +510,5 @@ function endGame(){
       popup: 'sweet end', 
       confirmButton: 'butt2'
     }
-    
   }).then(function(){window.location.reload();});
-
 }
